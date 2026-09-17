@@ -18,7 +18,7 @@ export default async function ForbiddenPage() {
         {locale === "ar" ? "انتقل إلى لوحة التحكم للاستمرار." : "Head back to the dashboard to continue."}
       </p>
       <Button asChild>
-        <a href="/dashboard">{translate(locale, "nav.dashboard")}</a>
+        <a href="/pharmacy/dashboard">{translate(locale, "nav.dashboard")}</a>
       </Button>
     </div>
   );
