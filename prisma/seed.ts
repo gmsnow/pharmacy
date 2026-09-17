@@ -5,7 +5,7 @@ import { hash } from "bcryptjs";
 
 const adapter = new PrismaPg(
   { connectionString: process.env.DATABASE_URL },
-  { schema: "public" }
+  { schema: process.env.PGSCHEMA ?? "public" }
 );
 const prisma = new PrismaClient({ adapter });
 
@@ -53,7 +53,7 @@ async function main() {
     prisma.user.deleteMany(),
     prisma.warehouse.deleteMany(),
     prisma.branch.deleteMany(),
-  ]);
+  ], { maxWait: 10000, timeout: 120000 });
 
   // Branch + warehouse
   const branch = await prisma.branch.create({
